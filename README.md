@@ -1,29 +1,21 @@
-# SARVINKX Pulse — Desktop Dashboard Starter
+# SARVINKX Pulse
 
-A lightweight, responsive HTML/CSS/JavaScript dashboard with a premium dark interface, app shortcut tiles, local tasks and notes.
+A lightweight personal dashboard with a cinematic wallpaper engine, glass widgets, app dock, local tasks and notes. It uses plain HTML, CSS and JavaScript and works with GitHub Pages without a build step.
 
 ## Run it
-1. Extract the ZIP.
-2. Open `index.html` in Chrome or Edge.
-3. Add website shortcuts with **+ Add app**.
-4. Tasks, notes and shortcuts are saved in that browser's local storage.
 
-## Important limitation about installed Windows apps
-A normal browser page **cannot scan your installed Windows apps or launch arbitrary local `.exe` files**. This is a browser security boundary, not a bug.
+Open `index.html` in a modern browser or publish the project folder with GitHub Pages. The app and its preset wallpapers work offline once the files are available locally. Google Fonts are optional; system sans-serif fallbacks are used if they cannot load.
 
-This starter includes sample app tiles:
-- Web shortcuts (ChatGPT, Gemini, YouTube, GitHub, n8n, Canva, Notion) open their websites.
-- Local app examples (VS Code, Antigravity) show an explanatory message until a native desktop integration is added.
+## Wallpaper engine
 
-## To show the real apps installed on your PC
-Next phase should package this UI as a Windows desktop app using **Tauri 2** and add a narrowly scoped native Rust command that reads Windows Start Menu shortcut locations. Let the user select which apps to show. Launching should use validated shortcut targets, never arbitrary commands from page input. Keep the frontend isolated and use an allowlist/capability policy.
+Use the gear button in the upper-right corner to open wallpaper settings. Choose one of the bundled categories (AI & Technology, Motivation & Discipline, Iron Man / Futuristic Hero, Space & Universe, Nature & Cinematic, or Minimal Focus), or use Previous, Next and Shuffle. Preset art is bundled as local SVG files in `assets/wallpapers`, so it does not download remote images or require an image API.
 
-## Real AI news
-News is intentionally labelled as demo/setup content. Do not present invented headlines as live news. In the next phase, connect reputable RSS feeds or official APIs through a small local service, validate links, show publication timestamps and provide source links. Keep API secrets out of frontend JavaScript.
+Automatic rotation can be disabled or set to 15 minutes, 30 minutes, 1 hour, 6 hours, or daily. The appearance, accent color, selected wallpaper and interval persist in the browser under `pulse.wallpaper.settings`. Crossfades respect the operating system's reduced-motion preference.
 
-## Files
-- `index.html` — layout
-- `style.css` — responsive premium UI
-- `script.js` — clock, app shortcuts, task list and local notes
+Choose a local image in the Custom wallpaper section to use a personal background. The browser resizes it and stores a compressed copy in local storage; the original file is not uploaded. This lets it persist across refreshes in the same browser profile, but browser data clearing or storage limits can remove or block it. Re-select the image if that happens. Keeping a reference to and reopening arbitrary filesystem paths reliably would require a later desktop integration.
 
-This is a working starter dashboard, not yet a native Windows wallpaper replacement. A Windows startup app can launch after sign-in; a true desktop-widget layer needs additional Windows-specific integration.
+## Existing dashboard data and browser limits
+
+App shortcuts, tasks and notes continue using the existing `pulse.apps`, `pulse.tasks` and `pulse.note` local storage keys. Website shortcuts open in a new tab. The Windows app examples cannot launch local programs in a browser. This page is a full-screen experience while open, not a persistent Windows wallpaper layer; those OS features require a later native phase. No Tauri or native Windows code is included.
+
+News cards are explicitly demo/setup content, not live headlines. Connect a trusted feed before showing real news.

@@ -1,82 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#07111f" />
-  <title>SARVINKX Pulse — Desktop Dashboard</title>
+  <meta name="description" content="SARVINKX Pulse personal desktop dashboard." />
+  <title>SARVINKX Pulse — Desktop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="wallpaper-engine.css" />
 </head>
 <body>
-  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand-mark">S<span>✦</span></div>
-      <div class="brand-name">SARVINKX <small>PULSE DESKTOP</small></div>
-      <nav>
-        <button class="nav-item active" data-view="home">⌂ <span>Overview</span></button>
-        <button class="nav-item" data-view="apps">▦ <span>My Apps</span></button>
-        <button class="nav-item" data-view="news">◉ <span>AI & Tech</span></button>
-        <button class="nav-item" data-view="tasks">✓ <span>Tasks & Notes</span></button>
-      </nav>
-      <div class="sidebar-bottom"><span class="status-dot"></span> Local workspace <small>v0.1</small></div>
-    </aside>
+  <div class="wallpaper" aria-hidden="true"><div id="wallpaperA" class="wallpaper-layer active"></div><div id="wallpaperB" class="wallpaper-layer"></div></div>
+  <main class="desktop" aria-label="SARVINKX Pulse desktop dashboard">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="SARVINKX Pulse home"><span class="brand-mark">S<span>✦</span></span><span>SARVINKX <small>PULSE</small></span></a>
+      <div class="top-actions"><span class="system-status"><i></i> PERSONAL SPACE</span><button id="themeBtn" class="icon-btn" type="button" title="Toggle ambient glow" aria-label="Toggle ambient glow">✧</button><button id="wallpaperSettingsBtn" class="icon-btn" type="button" title="Wallpaper settings" aria-label="Wallpaper settings">⚙</button></div>
+    </header>
+    <section class="hero" id="home" aria-labelledby="greeting"><p class="eyebrow">YOUR DAY, IN FOCUS</p><h1 id="greeting">Good evening, Mantu.</h1><div id="clock" class="clock" aria-live="off">--:--<span>--</span></div><p id="date" class="date">Loading date…</p></section>
+    <section class="widget-grid" aria-label="Your widgets">
+      <article class="glass news-widget" aria-labelledby="newsTitle"><div class="widget-heading"><div><p class="eyebrow">SIGNAL / 01</p><h2 id="newsTitle">AI & technology</h2></div><button id="refreshNews" class="quiet-button" type="button">Refresh ↻</button></div><div id="newsList" class="news-list"><article class="news-item"><span class="news-icon">AI</span><div><strong>News feed not connected</strong><p>Configure a trusted RSS or API source to see real, dated headlines.</p></div><span class="news-time">SETUP</span></article></div><p class="demo-note">DEMO CONTENT · No live headlines are shown until a source is connected.</p></article>
+      <article class="glass tasks-widget" aria-labelledby="tasksTitle"><div class="widget-heading"><div><p class="eyebrow">DAILY MOMENTUM</p><h2 id="tasksTitle">Today's tasks</h2></div><span class="counter" id="taskCount">0</span></div><div class="progress-meta"><span id="progressLabel">0 of 3 tasks complete</span><span class="progress-track"><span id="progressBar"></span></span></div><form id="taskForm" class="add-row"><input id="taskInput" aria-label="New task" placeholder="Add a task…" maxlength="100" /><button class="primary-btn" type="submit" aria-label="Add task">+</button></form><ul id="taskList" class="task-list"></ul><div class="note-area"><label for="quickNote">QUICK NOTE</label><textarea id="quickNote" placeholder="Capture a thought…" aria-label="Quick note"></textarea><span class="save-status" id="saveStatus">Saved on this device</span></div></article>
+    </section>
+    <footer class="bottom-bar"><span id="year"></span> · SARVINKX PULSE</footer>
+  </main>
+  <nav class="dock-wrap" aria-label="App dock"><div id="appGrid" class="app-dock"></div></nav>
 
-    <main class="main">
-      <header class="topbar">
-        <div><p class="eyebrow">YOUR PERSONAL COMMAND CENTER</p><h1 id="greeting">Good evening, Mantu.</h1></div>
-        <div class="top-actions"><span class="pill"><span class="status-dot"></span> System ready</span><button id="themeBtn" class="icon-btn" title="Toggle glow">✧</button></div>
-      </header>
-
-      <section class="hero-grid" id="overview">
-        <div class="clock-card panel">
-          <div class="clock-label">LOCAL TIME</div><div id="clock" class="clock">--:--<span>--</span></div>
-          <div id="date" class="date">Loading date…</div>
-          <div class="quote">“Build something useful today.”</div>
-        </div>
-        <div class="focus-card panel">
-          <div class="section-kicker">TODAY'S FOCUS <span class="live-tag">● LIVE</span></div>
-          <h2>Learn. Build. Launch.</h2>
-          <p>Keep your tools, tasks and technology updates in one calm workspace.</p>
-          <div class="progress-track"><div id="progressBar"></div></div>
-          <div class="progress-meta"><span id="progressLabel">0 of 3 tasks complete</span><button class="text-btn" data-goto="tasks">View tasks ↗</button></div>
-        </div>
-      </section>
-
-      <section class="section-heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h2>Quick launch</h2></div><button class="text-btn" data-goto="apps">Manage apps ↗</button></section>
-      <section id="appGrid" class="app-grid"></section>
-      <p class="hint">Tip: add your own apps with “+ Add app”. Web links open directly. Local Windows apps need desktop-app integration to launch reliably.</p>
-
-      <section class="lower-grid">
-        <div class="panel content-panel">
-          <div class="section-heading compact"><div><p class="eyebrow">TECH RADAR</p><h2>AI & technology</h2></div><button id="refreshNews" class="text-btn">Refresh ↻</button></div>
-          <div id="newsList" class="news-list">
-            <div class="news-item"><span class="news-icon">AI</span><div><strong>Connect a real news feed</strong><p>This starter keeps news clearly marked as demo until a feed is configured.</p></div><span class="news-time">Setup</span></div>
-          </div>
-          <p class="hint">No fake “live” headlines: demo items are labelled until a real source is connected.</p>
-        </div>
-        <div class="panel content-panel">
-          <div class="section-heading compact"><div><p class="eyebrow">PERSONAL ORGANIZER</p><h2>Today's tasks</h2></div><span class="counter" id="taskCount">0</span></div>
-          <form id="taskForm" class="add-row"><input id="taskInput" placeholder="Add a task…" maxlength="100" /><button class="primary-btn" type="submit">Add</button></form>
-          <ul id="taskList" class="task-list"></ul>
-          <div class="note-area"><label for="quickNote">QUICK NOTE</label><textarea id="quickNote" placeholder="Ideas, reminders, things to explore…"></textarea><span class="save-status" id="saveStatus">Saved on this device</span></div>
-        </div>
-      </section>
-      <footer>Designed for your desktop · <span id="year"></span> SARVINKX Pulse <span class="footer-right">Privacy-first starter · Data stays in this browser</span></footer>
-    </main>
-  </div>
-
-  <dialog id="appDialog" class="dialog">
-    <form id="appForm" method="dialog">
-      <div class="dialog-head"><div><p class="eyebrow">QUICK LAUNCH</p><h2>Add an app or website</h2></div><button type="button" class="icon-btn" id="closeDialog">×</button></div>
-      <label>App name<input id="appName" required maxlength="30" placeholder="e.g. VS Code" /></label>
-      <label>Short label / emoji<input id="appIcon" maxlength="4" placeholder="e.g. 💻" value="✦" /></label>
-      <label>Website URL (optional)<input id="appUrl" type="url" placeholder="https://example.com" /></label>
-      <label>Accent color<select id="appColor"><option value="blue">Electric blue</option><option value="purple">Purple</option><option value="cyan">Cyan</option><option value="orange">Orange</option><option value="pink">Pink</option></select></label>
-      <p class="hint">For safety, this web version can open websites only. It cannot scan installed Windows apps or run local programs.</p>
-      <div class="dialog-actions"><button type="button" class="secondary-btn" id="cancelDialog">Cancel</button><button class="primary-btn" type="submit">Save app</button></div>
-    </form>
+  <dialog id="wallpaperDialog" class="dialog wallpaper-dialog">
+    <div class="dialog-head"><div><p class="eyebrow">PERSONALIZE YOUR SPACE</p><h2>Wallpaper engine</h2></div><button type="button" class="icon-btn" id="closeWallpaperDialog" aria-label="Close wallpaper settings">×</button></div>
+    <div class="wallpaper-controls"><label>Automatic rotation<select id="rotationInterval"><option value="0">Disabled</option><option value="900000">Every 15 minutes</option><option value="1800000">Every 30 minutes</option><option value="3600000">Every hour</option><option value="21600000">Every 6 hours</option><option value="86400000">Daily</option></select></label><label>Appearance<select id="appearanceMode"><option value="dark">Dark glass</option><option value="light">Light glass</option></select></label><label>Accent color<select id="accentColor"><option value="cyan">Glacier cyan</option><option value="blue">Electric blue</option><option value="violet">Aurora violet</option><option value="amber">Solar amber</option><option value="rose">Stellar rose</option></select></label></div>
+    <div class="wallpaper-actions"><button type="button" class="secondary-btn" id="previousWallpaper">← Previous</button><button type="button" class="secondary-btn" id="shuffleWallpaper">Shuffle</button><button type="button" class="secondary-btn" id="nextWallpaper">Next →</button></div>
+    <div id="wallpaperPreviews" class="wallpaper-previews" aria-label="Wallpaper categories"></div>
+    <div class="custom-wallpaper"><label for="customWallpaperFile">Custom wallpaper</label><input id="customWallpaperFile" type="file" accept="image/*" /><p id="wallpaperStatus" class="hint">Choose an image to resize and store it in this browser.</p></div>
+    <button type="button" class="secondary-btn clear-custom" id="clearCustomWallpaper" hidden>Remove saved custom wallpaper</button>
   </dialog>
+
+  <dialog id="appDialog" class="dialog"><form id="appForm" method="dialog"><div class="dialog-head"><div><p class="eyebrow">QUICK LAUNCH</p><h2>Add an app or website</h2></div><button type="button" class="icon-btn" id="closeDialog" aria-label="Close dialog">×</button></div><label>App name<input id="appName" required maxlength="30" placeholder="e.g. VS Code" /></label><label>Short label / emoji<input id="appIcon" maxlength="4" placeholder="e.g. 💻" value="✦" /></label><label>Website URL (optional)<input id="appUrl" type="url" placeholder="https://example.com" /></label><label>Accent color<select id="appColor"><option value="blue">Electric blue</option><option value="purple">Purple</option><option value="cyan">Cyan</option><option value="orange">Orange</option><option value="pink">Pink</option></select></label><p class="hint">Website links open in your browser. Local Windows apps need a future native desktop integration.</p><div class="dialog-actions"><button type="button" class="secondary-btn" id="cancelDialog">Cancel</button><button class="primary-btn" type="submit">Save app</button></div></form></dialog>
   <script src="script.js"></script>
 </body>
 </html>
