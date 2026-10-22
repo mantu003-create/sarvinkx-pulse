@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07111f" />
+  <title>SARVINKX Pulse — Desktop Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-mark">S<span>✦</span></div>
+      <div class="brand-name">SARVINKX <small>PULSE DESKTOP</small></div>
+      <nav>
+        <button class="nav-item active" data-view="home">⌂ <span>Overview</span></button>
+        <button class="nav-item" data-view="apps">▦ <span>My Apps</span></button>
+        <button class="nav-item" data-view="news">◉ <span>AI & Tech</span></button>
+        <button class="nav-item" data-view="tasks">✓ <span>Tasks & Notes</span></button>
+      </nav>
+      <div class="sidebar-bottom"><span class="status-dot"></span> Local workspace <small>v0.1</small></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">YOUR PERSONAL COMMAND CENTER</p><h1 id="greeting">Good evening, Mantu.</h1></div>
+        <div class="top-actions"><span class="pill"><span class="status-dot"></span> System ready</span><button id="themeBtn" class="icon-btn" title="Toggle glow">✧</button></div>
+      </header>
+
+      <section class="hero-grid" id="overview">
+        <div class="clock-card panel">
+          <div class="clock-label">LOCAL TIME</div><div id="clock" class="clock">--:--<span>--</span></div>
+          <div id="date" class="date">Loading date…</div>
+          <div class="quote">“Build something useful today.”</div>
+        </div>
+        <div class="focus-card panel">
+          <div class="section-kicker">TODAY'S FOCUS <span class="live-tag">● LIVE</span></div>
+          <h2>Learn. Build. Launch.</h2>
+          <p>Keep your tools, tasks and technology updates in one calm workspace.</p>
+          <div class="progress-track"><div id="progressBar"></div></div>
+          <div class="progress-meta"><span id="progressLabel">0 of 3 tasks complete</span><button class="text-btn" data-goto="tasks">View tasks ↗</button></div>
+        </div>
+      </section>
+
+      <section class="section-heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h2>Quick launch</h2></div><button class="text-btn" data-goto="apps">Manage apps ↗</button></section>
+      <section id="appGrid" class="app-grid"></section>
+      <p class="hint">Tip: add your own apps with “+ Add app”. Web links open directly. Local Windows apps need desktop-app integration to launch reliably.</p>
+
+      <section class="lower-grid">
+        <div class="panel content-panel">
+          <div class="section-heading compact"><div><p class="eyebrow">TECH RADAR</p><h2>AI & technology</h2></div><button id="refreshNews" class="text-btn">Refresh ↻</button></div>
+          <div id="newsList" class="news-list">
+            <div class="news-item"><span class="news-icon">AI</span><div><strong>Connect a real news feed</strong><p>This starter keeps news clearly marked as demo until a feed is configured.</p></div><span class="news-time">Setup</span></div>
+          </div>
+          <p class="hint">No fake “live” headlines: demo items are labelled until a real source is connected.</p>
+        </div>
+        <div class="panel content-panel">
+          <div class="section-heading compact"><div><p class="eyebrow">PERSONAL ORGANIZER</p><h2>Today's tasks</h2></div><span class="counter" id="taskCount">0</span></div>
+          <form id="taskForm" class="add-row"><input id="taskInput" placeholder="Add a task…" maxlength="100" /><button class="primary-btn" type="submit">Add</button></form>
+          <ul id="taskList" class="task-list"></ul>
+          <div class="note-area"><label for="quickNote">QUICK NOTE</label><textarea id="quickNote" placeholder="Ideas, reminders, things to explore…"></textarea><span class="save-status" id="saveStatus">Saved on this device</span></div>
+        </div>
+      </section>
+      <footer>Designed for your desktop · <span id="year"></span> SARVINKX Pulse <span class="footer-right">Privacy-first starter · Data stays in this browser</span></footer>
+    </main>
+  </div>
+
+  <dialog id="appDialog" class="dialog">
+    <form id="appForm" method="dialog">
+      <div class="dialog-head"><div><p class="eyebrow">QUICK LAUNCH</p><h2>Add an app or website</h2></div><button type="button" class="icon-btn" id="closeDialog">×</button></div>
+      <label>App name<input id="appName" required maxlength="30" placeholder="e.g. VS Code" /></label>
+      <label>Short label / emoji<input id="appIcon" maxlength="4" placeholder="e.g. 💻" value="✦" /></label>
+      <label>Website URL (optional)<input id="appUrl" type="url" placeholder="https://example.com" /></label>
+      <label>Accent color<select id="appColor"><option value="blue">Electric blue</option><option value="purple">Purple</option><option value="cyan">Cyan</option><option value="orange">Orange</option><option value="pink">Pink</option></select></label>
+      <p class="hint">For safety, this web version can open websites only. It cannot scan installed Windows apps or run local programs.</p>
+      <div class="dialog-actions"><button type="button" class="secondary-btn" id="cancelDialog">Cancel</button><button class="primary-btn" type="submit">Save app</button></div>
+    </form>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>
